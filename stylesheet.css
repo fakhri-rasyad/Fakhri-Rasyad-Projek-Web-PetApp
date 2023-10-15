@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    color: #d4a373;
+}
+
+body{
+    background-color: #fefae0;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+header{
+    background-color: #faedcd;
+    padding: 24px 16px;
+    border-bottom: 4px solid #ccd5ae;
+}
+
+.floating{
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    right: 40px;
+    bottom: 40px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #ccd5ae;
+}
+
+.floating a{
+    text-decoration: none;
+}
+
+.button{
+    color: black;
+    text-align: center;
+    font-size: 24px;
+}
+
+.card{
+    background-color: #ccd5ae;
+    border-radius: 8px;
+    border: 1px solid black;
+    width: 90px;
+    height: 150px;
+    padding: 16px;
+    margin: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon{
+    width: 128px;
+}
+
+section{
+    padding: 24px;
+}
+
+#form-container{
+    background-color: #faedcd;
+    width: 400px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.add_pet{
+    display: flex;
+    justify-content: center;
+}
+
+#pet_list{
+    display: flex;
+}
