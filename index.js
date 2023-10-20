@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(event){
     localStorage.setItem('Test', JSON.stringify({"nama" : "Kucing", "ikon" : "./images/cats/bobtail.png"}))
+    let item = {...localStorage}
+    console.log(item)
     let petList = document.getElementById("pet_list");
     for(let i = 0; i< 5; i++){
         var petInfo = JSON.parse(localStorage.getItem('Test'))

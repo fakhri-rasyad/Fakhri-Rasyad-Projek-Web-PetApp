@@ -3,8 +3,9 @@ let petInputRace = ""
 let petInputSpecies = null
 let petInputGender = ""
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("added");
     let raceIcons = [
         { race: "cat", icon: "./images/cats/cat.png" },
         { race: "dog", icon: "./images/dogs/dog.png" },
@@ -14,6 +15,18 @@ document.addEventListener("DOMContentLoaded", function () {
         { gender: "male", icon: "./images/kelamin/male.png" },
         { gender: "female", icon: "./images/kelamin/female.png" },
     ];
+
+    let nameInput = document.getElementById('name_input')
+    nameInput.addEventListener('input', ()=>{
+        petInputName = nameInput.value
+        console.log(petInputName)
+    })
+
+    let addButton = document.getElementById('enter')
+    addButton.onclick = function(){
+        let inputName = {"name" : petInputName, ...petInputSpecies, petInputGender}
+        localStorage.setItem(petInputName, JSON.stringify(inputName))
+    }
 
     let raceChoiceSection = document.getElementById("race_choice");
     let genderChoiceSection = document.getElementById("gender_choice");
@@ -57,7 +70,6 @@ function appendGenderSection(petGender, petIcon) {
     input.type = "radio";
     input.name = "Gender";
     input.onclick = function () {
-        appendSpeciesSection(petGender);
         petInputGender = petGender
         console.log(petInputGender)
     };
