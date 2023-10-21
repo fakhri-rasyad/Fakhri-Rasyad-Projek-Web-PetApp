@@ -1,26 +1,34 @@
-document.addEventListener('DOMContentLoaded', function(event){
-    localStorage.setItem('Test', JSON.stringify({"nama" : "Kucing", "ikon" : "./images/cats/bobtail.png"}))
-    let item = {...localStorage}
-    console.log(item)
-    let petList = document.getElementById("pet_list");
-    for(let i = 0; i< 5; i++){
-        var petInfo = JSON.parse(localStorage.getItem('Test'))
-        petList.appendChild(addPetCard(petInfo["nama"], petInfo["ikon"]))
+document.addEventListener("DOMContentLoaded", function (event) {
+    let petList = JSON.parse(localStorage.getItem("pet"));
+    let petListElement = document.getElementById("pet_list");
+
+    if (petList == null) {
+        petListElement.append(noPetInList());
+    } else {
+        for (let pet of petList) {
+            petListElement.appendChild(addPetCard(pet.name, pet.icon));
+        }
     }
-})
+});
 
-function addPetCard(petName, petIcon){
-        const card = document.createElement('div');
-        card.className = "card"
+function noPetInList() {
+    const header = document.createElement("h1");
+    header.innerText = "Tambahkan Hewan Anda Dengan Menekan Tombol Tambah Di Kanan Bawah";
 
-        const iconImg = document.createElement('img')
-        iconImg.src = petIcon;
-        iconImg.className = "icon"
-
-        const petCardTitle = document.createElement('h5')
-        petCardTitle.innerText = petName
-
-        card.append(iconImg, petCardTitle)
-        return card
+    return header;
 }
 
+function addPetCard(petName, petIcon) {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const iconImg = document.createElement("img");
+    iconImg.src = petIcon;
+    iconImg.className = "icon";
+
+    const petCardTitle = document.createElement("h5");
+    petCardTitle.innerText = petName;
+
+    card.append(iconImg, petCardTitle);
+    return card;
+}
