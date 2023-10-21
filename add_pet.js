@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     let nameInput = document.getElementById('name_input')
-    nameInput.addEventListener('input', ()=>{
+    nameInput.addEventListener('input', () => {
         petInputName = nameInput.value
     })
 
@@ -31,32 +31,35 @@ document.addEventListener("DOMContentLoaded", function () {
         raceChoiceSection.append(appendRaceSection(race.race, race.icon));
     }
 
-    for(let gender of genderIcons){
+    for (let gender of genderIcons) {
         genderChoiceSection.append(appendGenderSection(gender.gender, gender.icon))
     }
 });
 
-function addPetToPetList(){
-    if(petInputName.length == 0){
+function addPetToPetList() {
+    if (petInputName.length == 0) {
         alert('Nama Peliharaan Tidak Boleh Kosong')
-        console.log('alert')
         return null;
-    } else if (petInputRace.length == 0){
+    } else if (petInputRace.length == 0) {
         alert('Ras Peliharaan Tidak Boleh Kosong')
         return null;
     }
-    else if (petInputSpecies == null){
+    else if (petInputSpecies == null) {
         alert('Spesies Peliharaan Tidak Boleh Kosong')
         return null;
     }
-    else if (petInputGender.length == 0){
+    else if (petInputGender.length == 0) {
         alert('Kelamin Peliharaan Tidak Boleh Kosong')
         return null;
     }
-    let inputName = {"name" : petInputName, ...petInputSpecies, petInputGender}
-        let petList = JSON.parse(localStorage.getItem("pet"))
+    let inputName = { "name": petInputName, ...petInputSpecies, petInputGender }
+    let petList = JSON.parse(localStorage.getItem("pet"))
+    if(petList != null){
         localStorage.setItem("pet", JSON.stringify([...petList, inputName]))
-    
+    } else {
+        localStorage.setItem("pet", JSON.stringify([inputName]))
+    }
+
     alert('Hewan peliharaan anda telah ditambahkan')
 }
 
@@ -126,26 +129,26 @@ function appendSpeciesSection(race) {
     ];
 
     for (let species of speciesIcon) {
-        if(species.race == race){
+        if (species.race == race) {
             let label = document.createElement("label");
             let input = document.createElement("input");
             let image = document.createElement("img");
-    
+
             input.value = species.species;
             input.type = "radio";
             input.name = "species";
-            input.onclick = function(){
+            input.onclick = function () {
                 petInputSpecies = species
             }
-    
+
             image.src = species.icon;
             image.className = "species";
             image.alt = "petSpecies";
             image.height = "48";
             image.width = "48";
-    
+
             label.append(input, image);
-    
+
             speciesChoiceSection.appendChild(label);
         }
     }
