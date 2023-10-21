@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let addButton = document.getElementById('enter')
     addButton.onclick = function(){
         let inputName = {"name" : petInputName, ...petInputSpecies, petInputGender}
-        localStorage.setItem(petInputName, JSON.stringify(inputName))
+        let petList = JSON.parse(localStorage.getItem("pet"))
+        localStorage.setItem("pet", JSON.stringify([...petList, inputName]))
     }
 
     let raceChoiceSection = document.getElementById("race_choice");
