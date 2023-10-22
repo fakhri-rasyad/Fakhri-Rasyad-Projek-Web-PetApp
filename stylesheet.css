@@ -1,6 +1,7 @@
 *{
     margin: 0;
-    color: #d4a373;
+    color: black;
+    font-family: 'Roboto', sans-serif;
 }
 
 body{
@@ -44,12 +45,16 @@ header{
     border: 1px solid black;
     width: 90px;
     height: 150px;
-    padding: 16px;
-    margin: 0 16px;
+    padding: 24px;
+    margin: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.card h5{
+    margin-top: 8px;
 }
 
 .icon{
@@ -77,6 +82,14 @@ section{
     border-radius: 8px;
 }
 
+#name_section{
+    width: 100%;
+}
+
+#name_input{
+    width: 95%;
+}
+
 .add_pet{
     display: flex;
     justify-content: center;
@@ -84,6 +97,7 @@ section{
 
 #pet_list{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .inputs{

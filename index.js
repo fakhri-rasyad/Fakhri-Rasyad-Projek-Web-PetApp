@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         petListElement.append(noPetInList());
     } else {
         for (let pet of petList) {
-            petListElement.appendChild(addPetCard(pet.name, pet.icon));
+            petListElement.appendChild(addPetCard(pet));
         }
     }
 });
@@ -18,17 +18,26 @@ function noPetInList() {
     return header;
 }
 
-function addPetCard(petName, petIcon) {
+function addPetCard(pet) {
     const card = document.createElement("div");
+    const link = document.createElement('a');
+
+    link.href = './petInfo.html'
     card.className = "card";
 
     const iconImg = document.createElement("img");
-    iconImg.src = petIcon;
+    iconImg.src = pet.icon;
     iconImg.className = "icon";
 
     const petCardTitle = document.createElement("h5");
-    petCardTitle.innerText = petName;
+    petCardTitle.innerText = pet.name;
+
+    link.addEventListener('click', function (){
+        localStorage.setItem('chosen pet', JSON.stringify(pet))
+        console.log(JSON.parse(localStorage.getItem('chosen pet')))
+    })
 
     card.append(iconImg, petCardTitle);
-    return card;
+    link.appendChild(card)
+    return link;
 }
