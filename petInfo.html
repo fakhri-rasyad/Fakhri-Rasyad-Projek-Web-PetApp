@@ -6,48 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
     <title>Pet Info</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-        }
-
-        #pet_info {
-            background-color: antiquewhite;
-            border: 1px solid black;
-            border-radius: 8px;
-            padding: 14px;
-            text-align: center;
-            width: 400px;
-        }
-
-        #info_section {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-        }
-
-        #image_container {
-            display: flex;
-            width: 50%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #image_container img {
-            width: 100%;
-            object-fit: cover;
-
-        }
-
-        #pet_data_section {
-            width: 50%;
-            text-align: start;
-        }
-    </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function(){
+        document.addEventListener('DOMContentLoaded', function () {
             let petInfo = JSON.parse(localStorage.getItem('chosen pet'))
+            let petList = JSON.parse(localStorage.getItem("pet"))
 
             let petIconSection = document.getElementById("image_container")
             let petIcon = document.createElement('img')
@@ -55,50 +17,84 @@
             petIconSection.appendChild(petIcon)
 
             let name = document.getElementById("name")
-            let petName = document.createElement('h3')
+            let petName = document.createElement('p')
             petName.innerText = petInfo.name
             name.appendChild(petName)
 
             let race = document.getElementById("race")
-            let petRace = document.createElement('h3')
+            let petRace = document.createElement('p')
             petRace.innerText = petInfo.race
             race.appendChild(petRace)
 
             let species = document.getElementById("species")
-            let petSpecies = document.createElement('h3')
+            let petSpecies = document.createElement('p')
             petSpecies.innerText = petInfo.species
             species.appendChild(petSpecies)
 
             let gender = document.getElementById("gender")
-            let petGender = document.createElement('h3')
+            let petGender = document.createElement('p')
             petGender.innerText = petInfo.gender
             gender.appendChild(petGender)
+
+            let hasBeenFed = document.getElementById('fed')
+            let hasBeenBath = document.getElementById('bath')
+            console.log(petInfo.bath)
+            hasBeenFed.checked = petInfo.fed
+            hasBeenBath.checked = petInfo.bath
+
+            hasBeenFed.addEventListener('click', function(){
+                let newPetList = petList.filter(element => element.name != petInfo.name && element.race != petInfo.race)
+                petInfo.fed = hasBeenFed.checked
+                localStorage.setItem('pet', JSON.stringify([...newPetList, petInfo]))
+                localStorage.setItem('chosen_pet', JSON.stringify(petInfo))
+
+            })
+            hasBeenBath.addEventListener('click', function(){
+                let newPetList = petList.filter(element => element.name != petInfo.name && element.race != petInfo.race)
+                petInfo.bath = hasBeenBath.checked
+                console.log(petInfo)
+                localStorage.setItem('chosen_pet', JSON.stringify(petInfo))
+                localStorage.setItem('pet', JSON.stringify([...newPetList, petInfo]))
+            })
         })
     </script>
 </head>
 
 <body>
-    <div id="pet_info">
+    <header>
         <h1>PET INFO</h1>
-        <div id="info_section">
-            <div id="image_container">
-            </div>
-            <div id="pet_data_section">
-                <div id="name" class="section">
-                    <h2>Nama:</h2>
+    </header>
+    <section id="pet_info">
+        <div id="info">
+            <h1>PET INFO</h1>
+            <div id="info_section">
+                <div id="image_container">
                 </div>
-                <div id="race" class="section">
-                    <h2>Race</h2>
-                </div>
-                <div id="species" class="section">
-                    <h2>Species</h2>
-                </div>
-                <div id="gender" class="section">
-                    <h2>Gender</h2>
+                <div id="pet_data_section">
+                    <div id="name" class="section">
+                        <h3>Hello my name is:</h3>
+                    </div>
+                    <div id="race" class="section">
+                        <h3>I'm a:</h3>
+                    </div>
+                    <div id="species" class="section">
+                        <h3>My breed is:</h3>
+                    </div>
+                    <div id="gender" class="section">
+                        <h3>I am:</h3>
+                    </div>
+                    <div class="section">
+                        <label for="fed">Have it been Fed?</label>
+                        <input id="fed" type="checkbox" checked value="true">
+                    </div>
+                    <div class="section">
+                        <label for="bath">Have it been Bathed?</label>
+                        <input id="bath" type="checkbox" value="false">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>

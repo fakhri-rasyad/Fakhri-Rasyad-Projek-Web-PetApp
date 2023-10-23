@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function (event) {
+    let todaysDate = new Date()
+    if(localStorage.getItem('today') == null){
+        localStorage.setItem('today', JSON.stringify(todaysDate.getDate()))
+    } 
+    // else if(todaysDate.getDate != JSON.parse(localStorage.getItem('today'))){
+
+    // }
+
+    // console.log(JSON.parse(localStorage.getItem('today')))
     let petList = JSON.parse(localStorage.getItem("pet"));
     let petListElement = document.getElementById("pet_list");
 

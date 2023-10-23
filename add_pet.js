@@ -52,7 +52,7 @@ function addPetToPetList() {
         alert('Kelamin Peliharaan Tidak Boleh Kosong')
         return null;
     }
-    let inputName = { "name": petInputName, ...petInputSpecies, "gender" : petInputGender }
+    let inputName = { "name": petInputName, ...petInputSpecies, "gender" : petInputGender , "fed": false, "bath": false}
     let petList = JSON.parse(localStorage.getItem("pet"))
     if(petList != null){
         localStorage.setItem("pet", JSON.stringify([...petList, inputName]))
