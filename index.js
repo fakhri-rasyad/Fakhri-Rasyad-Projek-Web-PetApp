@@ -31,7 +31,7 @@ function addPetCard(pet) {
     const card = document.createElement("div");
     const link = document.createElement('a');
 
-    link.href = './petInfo.html'
+    link.href = './pet_info.html'
     card.className = "card";
 
     const iconImg = document.createElement("img");
