@@ -1,15 +1,19 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     let todaysDate = new Date()
+    let petList = JSON.parse(localStorage.getItem("pet"));
+    let petListElement = document.getElementById("pet_list");
     if(localStorage.getItem('today') == null){
         localStorage.setItem('today', JSON.stringify(todaysDate.getDate()))
     } 
-    // else if(todaysDate.getDate != JSON.parse(localStorage.getItem('today'))){
+    else if(todaysDate.getDate() != JSON.parse(localStorage.getItem('today'))){
+        for(let pet of petList){
+            console.log(pet)
+            pet.fed = false
+            pet.bath = false
+        }
+        localStorage.setItem('pet', JSON.stringify(petList));
+    }
 
-    // }
-
-    // console.log(JSON.parse(localStorage.getItem('today')))
-    let petList = JSON.parse(localStorage.getItem("pet"));
-    let petListElement = document.getElementById("pet_list");
 
     if (petList == null) {
         petListElement.append(noPetInList());
