@@ -5,11 +5,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if(localStorage.getItem('today') == null){
         localStorage.setItem('today', JSON.stringify(todaysDate.getDate()))
     } 
-    else if(todaysDate.getDate() != JSON.parse(localStorage.getItem('today'))){
+    else if(todaysDate.getDate() != JSON.parse(localStorage.getItem('today')) && petList != null){
+        let dayDifference = todaysDate.getDate() - JSON.parse(localStorage.getItem('today'))
+        localStorage.setItem('today', JSON.stringify(todaysDate.getDate()))
         for(let pet of petList){
-            console.log(pet)
             pet.fed = false
             pet.bath = false
+            pet.age = parseInt(pet.age) + dayDifference
         }
         localStorage.setItem('pet', JSON.stringify(petList));
     }
